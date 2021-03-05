@@ -28,4 +28,7 @@ describe DockingStation do
      expect{subject.dock_bike(Bike.new)}.to raise_error("No space available")
    end
 
+     it 'accepts a capacity argument' do
+     expect(DockingStation).to respond_to(:new).with(1).argument
+   end
 end

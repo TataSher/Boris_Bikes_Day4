@@ -16,17 +16,16 @@ describe DockingStation do
   end
 
    it 'shows bike' do
-     expect(subject.dock_bike(:bike)).to eq(:bike)
+     expect(subject.dock_bike(:bikes)).to eq([:bikes])
    end
 
    it "doesn't release bike when bike not available" do
      expect{subject.release_bike}.to raise_error("No bikes available")
    end
 
-   it "doesn't accept more than one bike" do
-     bike = Bike.new
-     subject.dock_bike(bike)
-     expect{subject.dock_bike(bike)}.to raise_error("No space available")
+   it "doesn't accept more than twenty bikes" do
+     20.times{ subject.dock_bike(Bike.new) }
+     expect{subject.dock_bike(Bike.new)}.to raise_error("No space available")
    end
 
 end
